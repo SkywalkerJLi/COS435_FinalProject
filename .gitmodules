@@ -1,0 +1,3 @@
+[submodule "stable_contrastive_rl"]
+	path = stable_contrastive_rl
+	url = https://github.com/SkywalkerJLi/stable_contrastive_rl.git
