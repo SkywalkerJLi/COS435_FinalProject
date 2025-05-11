@@ -8,8 +8,13 @@ df_pickplace_drawer = pd.read_csv("progress_pickplace_drawer.csv")
 df_pickplace_table = pd.read_csv("progress_pickplacetable.csv")
 df_drawer = pd.read_csv("progress_drawer.csv")
 df_drawer_nolayer = pd.read_csv("progress_drawer_nolayer.csv")
-df_drawer_unstable = pd.read_csv("progress_drawer_unstable.csv")
 df_pickplace_drawer_entropy = pd.read_csv("progress_pickplace_drawer_entropy0.1.csv")
+df_pickplace_drawer_0_25 = pd.read_csv("progress_pickplace_0.25.csv")
+df_drawer_unstable = pd.read_csv("progress_drawer_unstable.csv")
+df_pickplace_drawer_unstable = pd.read_csv("progress_pickplace_drawer_unstable.csv")
+df_pickplace_table_unstable = pd.read_csv("progress_pickplace_table_unstable.csv")
+df_pushblock_drawer_unstable = pd.read_csv("progress_pushblockdrawer_unstable.csv")
+
 
 
 pushblock_drawer_mean = df_pushblock_drawer['eval/state_desired_goal/final/overall_success Mean'] 
@@ -18,17 +23,27 @@ pickplace_table_mean = df_pickplace_table['eval/state_desired_goal/final/overall
 drawer_mean = df_drawer['eval/state_desired_goal/final/overall_success Mean'] 
 drawer_nolayer_mean = df_drawer_nolayer['eval/state_desired_goal/final/overall_success Mean'] 
 pickplace_drawer_entropy_mean = df_pickplace_drawer_entropy['eval/state_desired_goal/final/overall_success Mean']
+pickplace_drawer_0_25_mean = df_pickplace_drawer_0_25['eval/state_desired_goal/final/overall_success Mean']
+
+drawer_unstable_mean = df_drawer_unstable['eval/state_desired_goal/final/overall_success Mean'] 
+pickplace_drawer_unstable_mean = df_pickplace_drawer_unstable['eval/state_desired_goal/final/overall_success Mean'] 
+pickplace_table_unstable_mean = df_pickplace_table_unstable['eval/state_desired_goal/final/overall_success Mean'] 
+pushblock_drawer_unstable_mean = df_pushblock_drawer_unstable['eval/state_desired_goal/final/overall_success Mean'] 
+
 
 drawer_actor_loss = df_drawer['trainer/eval/Policy Loss'] 
 drawer_unstable_actor_loss = df_drawer_unstable['trainer/eval/Policy Loss'] 
 
+pushblock_drawer_actor_loss = df_pushblock_drawer['trainer/eval/Policy Loss']
+pushblock_drawer_unstable_actor_loss = df_pushblock_drawer_unstable['trainer/eval/Policy Loss']
 
 plt.figure(figsize=(6, 4))
-plt.plot(pickplace_drawer_entropy_mean, label = "Stable Contrastive RL")
-plt.title("Policy Loss over Epochs for Drawer Environment")
+plt.plot(pushblock_drawer_actor_loss, label = "Stable Contrastive RL")
+plt.plot(pushblock_drawer_unstable_actor_loss, label = "Contrastive RL")
+plt.title("Policy Loss over Epochs for Push Block, Open Drawer Environment")
 plt.xlabel("Epochs")
-plt.xlim(0,230)
 plt.ylabel("Policy Loss")
+plt.xlim(0,200)
 plt.legend()
 plt.show()
 
